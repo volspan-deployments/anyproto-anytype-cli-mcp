@@ -72,6 +72,7 @@ async def create_api_key(name: str) -> dict:
 
     :param name: A descriptive name for the API key (e.g. 'my-bot-api-key', 'automation-script'). Used to identify the key in listings.
     """
+    _track("create_api_key")
     result = run_anytype_command(["auth", "apikey", "create", name])
 
     if not result["success"]:
@@ -109,6 +110,7 @@ async def list_api_keys() -> dict:
     Use this to audit existing keys, find a key's ID before revoking it,
     or verify a key was created successfully.
     """
+    _track("list_api_keys")
     result = run_anytype_command(["auth", "apikey", "list"])
 
     if not result["success"]:
@@ -187,6 +189,7 @@ async def revoke_api_key(id: str) -> dict:
 
     :param id: The unique AppHash identifier of the API key to revoke. Retrieve this from list_api_keys output.
     """
+    _track("revoke_api_key")
     result = run_anytype_command(["auth", "apikey", "revoke", id])
 
     if not result["success"]:
